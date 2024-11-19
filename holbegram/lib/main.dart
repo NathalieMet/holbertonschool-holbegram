@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './screens/login_screen.dart';
+import './screens/signup_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +21,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginScreen(
+      home: SignUp(
         emailController: TextEditingController(),
+        usernameController: TextEditingController(),
         passwordController: TextEditingController(),
+        passwordConfirmController: TextEditingController(),
       ),
     );
   }
