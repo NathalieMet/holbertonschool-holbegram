@@ -8,13 +8,13 @@ class TextFieldInput extends StatelessWidget {
   final TextInputType keyboardType;
 
   const TextFieldInput({
-     Key? key,
+      super.key,
       required this.controller,
       required this.ispassword,
       required this.hintText,
       this.suffixIcon,
       required this.keyboardType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class TextFieldInput extends StatelessWidget {
           ),
         ),
         filled : true,
-        contentPadding : EdgeInsets.all(8),
+        contentPadding : const EdgeInsets.all(8),
       suffixIcon: suffixIcon,
     ),
     );
