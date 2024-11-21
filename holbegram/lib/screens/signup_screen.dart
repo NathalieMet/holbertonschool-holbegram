@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:holbegram/methods/auth_methods.dart';
 import 'package:holbegram/screens/login_screen.dart';
 import '../widgets/text_field.dart';
 
@@ -147,8 +148,26 @@ class _SignupState extends State<SignUp> {
                             ),
                           ),
                       ),
-                      onPressed: () {
-                        // Action à définir
+                      onPressed: () async {
+                        String email = widget.emailController.text.trim();
+                        String password = widget.passwordController.text.trim();
+                        String username = widget.usernameController.text.trim();
+
+                        String result = await AuthMethode().signUpUser(
+                        context: context,
+                        email: email,
+                        password: password,
+                        username: username
+                        );
+                         if (result == "Success") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Signup successful!')),
+                          );
+                      } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(content: Text(result)),
+                          );
+                        }
                       },
                       child: const Text(
                         'Sign up',
