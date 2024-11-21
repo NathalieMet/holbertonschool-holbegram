@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:holbegram/screens/login_screen.dart';
 import '../widgets/text_field.dart';
 
 class SignUp extends StatefulWidget {
@@ -110,7 +111,28 @@ class _SignupState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 28),
-                  // Bouton "Log in"
+                  // Champ confirmation Mot de passe
+                  TextFieldInput(
+                    controller: widget.passwordConfirmController,
+                    ispassword: !_passwordVisible,
+                    hintText: 'Confirm Password',
+                    keyboardType: TextInputType.visiblePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                          color: Colors.red,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+                  // Bouton " Sign up"
                   SizedBox(
                     height: 48,
                     width: double.infinity,
@@ -129,74 +151,37 @@ class _SignupState extends State<SignUp> {
                         // Action à définir
                       },
                       child: const Text(
-                        'Log in',
+                        'Sign up',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
                   // Texte pour "F<orgot your login de>tails?"
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Forgot your login details? '),
-                      Text(
-                        'Get help logging in',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  // Divider
-                  const Divider(thickness: 2),
-                  const SizedBox(height: 24),
-                  // Texte pour s'inscrire
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Don't have an account? "),
-                        TextButton(
-                          onPressed: () {
-                            // Action à définir
-                          },
-                          child: const Text(
-                            'Sign up',
-                            style: TextStyle(
+                      const Text('Have an account? '),
+                      TextButton(
+                        child: const Text(
+                          "Log in",
+                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(218, 226, 37, 24),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  // Ligne de séparation "OR"
-                  const Row(
-                    children: [
-                      Flexible(child: Divider(thickness: 2)),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text('OR'),
+              ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(
+                                emailController: TextEditingController(),
+                                passwordController: TextEditingController(),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      Flexible(child: Divider(thickness: 2)),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  // Bouton "Sign in with Google"
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                        Image.asset(
-                        'assets/images/google.png',
-                        width: 40,
-                        height: 40,
-    ),
-                      const SizedBox(width: 10),
-                      const Text('Sign in with Google'),
                     ],
                   ),
                 ],
