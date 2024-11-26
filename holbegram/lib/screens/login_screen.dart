@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _passwordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                          color: Colors.red,
+                        color: Colors.red,
                       ),
                       onPressed: () {
                         setState(() {
@@ -99,26 +99,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         shape: WidgetStateProperty.all(
                           const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero, // Définit les bords carrés
-                            ),
+                            borderRadius:
+                                BorderRadius.zero, // Définit les bords carrés
                           ),
+                        ),
                       ),
                       onPressed: () async {
                         String email = widget.emailController.text.trim();
                         String password = widget.passwordController.text.trim();
 
                         String result = await AuthMethode().login(
-                        context: context,
-                        email: email,
-                        password: password,
+                          context: context,
+                          email: email,
+                          password: password,
                         );
-                         if (result == "Success") {
+                        if (result == "Success") {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Login successful!')),
+                            const SnackBar(content: Text('Login successful!')),
                           );
-                      } else {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(content: Text(result)),
+                            SnackBar(content: Text(result)),
                           );
                         }
                       },
@@ -154,16 +155,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextButton(
                           onPressed: () {
                             Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUp(
-                                emailController: TextEditingController(),
-                                passwordController: TextEditingController(),
-                                usernameController: TextEditingController(),
-                                passwordConfirmController: TextEditingController(),
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUp(
+                                  emailController: TextEditingController(),
+                                  passwordController: TextEditingController(),
+                                  usernameController: TextEditingController(),
+                                  passwordConfirmController:
+                                      TextEditingController(),
+                                ),
                               ),
-                            ),
-                          );
+                            );
                           },
                           child: const Text(
                             'Sign up',
@@ -194,11 +196,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                        Image.asset(
+                      Image.asset(
                         'assets/images/google.png',
                         width: 40,
                         height: 40,
-    ),
+                      ),
                       const SizedBox(width: 10),
                       const Text('Sign in with Google'),
                     ],

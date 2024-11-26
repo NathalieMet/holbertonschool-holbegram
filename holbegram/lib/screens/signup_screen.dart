@@ -61,15 +61,16 @@ class _SignupState extends State<SignUp> {
               height: 60,
             ),
             const Padding(
-  padding: EdgeInsets.symmetric(horizontal: 40.0), // Espace à gauche et à droite
-  child: Text(
-    'Sign up to see photos and videos from your friends.',
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontSize: 18,
-    ),
-  ),
-),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 40.0), // Espace à gauche et à droite
+              child: Text(
+                'Sign up to see photos and videos from your friends.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -102,7 +103,7 @@ class _SignupState extends State<SignUp> {
                         _passwordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                          color: Colors.red,
+                        color: Colors.red,
                       ),
                       onPressed: () {
                         setState(() {
@@ -123,7 +124,7 @@ class _SignupState extends State<SignUp> {
                         _passwordVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
-                          color: Colors.red,
+                        color: Colors.red,
                       ),
                       onPressed: () {
                         setState(() {
@@ -144,9 +145,10 @@ class _SignupState extends State<SignUp> {
                         ),
                         shape: WidgetStateProperty.all(
                           const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero, // Définit les bords carrés
-                            ),
+                            borderRadius:
+                                BorderRadius.zero, // Définit les bords carrés
                           ),
+                        ),
                       ),
                       onPressed: () async {
                         String email = widget.emailController.text.trim();
@@ -154,18 +156,17 @@ class _SignupState extends State<SignUp> {
                         String username = widget.usernameController.text.trim();
 
                         String result = await AuthMethode().signUpUser(
-                        context: context,
-                        email: email,
-                        password: password,
-                        username: username
-                        );
-                         if (result == "Success") {
+                            context: context,
+                            email: email,
+                            password: password,
+                            username: username);
+                        if (result == "Success") {
                           ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Signup successful!')),
+                            const SnackBar(content: Text('Signup successful!')),
                           );
-                      } else {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                           SnackBar(content: Text(result)),
+                            SnackBar(content: Text(result)),
                           );
                         }
                       },
@@ -184,11 +185,11 @@ class _SignupState extends State<SignUp> {
                       TextButton(
                         child: const Text(
                           "Log in",
-                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(218, 226, 37, 24),
-                            ),
-              ),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(218, 226, 37, 24),
+                          ),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,

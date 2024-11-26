@@ -14,30 +14,29 @@ class AuthMethode {
     required String email,
     required String password,
     required BuildContext context,
-    }) async {
-      String res = "An error occurred";
+  }) async {
+    String res = "An error occurred";
 
-      try {
-    if (email.isEmpty || password.isEmpty) {
-      return 'Please fill all the fields';
-    }
+    try {
+      if (email.isEmpty || password.isEmpty) {
+        return 'Please fill all the fields';
+      }
 
-    await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-    Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(
-                                emailController: TextEditingController(),
-                                passwordController: TextEditingController(),
-                              ),
-                            ));
-    res = "Success";
-
-     } on FirebaseAuthException catch (e) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(
+              emailController: TextEditingController(),
+              passwordController: TextEditingController(),
+            ),
+          ));
+      res = "Success";
+    } on FirebaseAuthException catch (e) {
       // Gérer les erreurs spécifiques de FirebaseAuth
       if (e.code == 'user-not-found') {
         res = "No user found for that email.";
@@ -59,21 +58,22 @@ class AuthMethode {
     required String username,
     Uint8List? file,
     required BuildContext context,
-    }) async {
-      String res = "An error occurred";
+  }) async {
+    String res = "An error occurred";
 
-      try {
-    if (email.isEmpty || password.isEmpty || username.isEmpty) {
-      return 'Please fill all the fields';
-    }
+    try {
+      if (email.isEmpty || password.isEmpty || username.isEmpty) {
+        return 'Please fill all the fields';
+      }
 
-     // Création de l'utilisateur dans Firebase Auth
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      // Création de l'utilisateur dans Firebase Auth
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-       // Récupération de l'utilisateur
+      // Récupération de l'utilisateur
       User? user = userCredential.user;
       if (user == null) {
         return "User creation failed.";
@@ -93,9 +93,9 @@ class AuthMethode {
         searchKey: username.substring(0, 1).toLowerCase(),
       );
 
-   await _firestore.collection("users").doc(user.uid).set(users.toJson());
+      await _firestore.collection("users").doc(user.uid).set(users.toJson());
 
-     res = "Success";
+      res = "Success";
     } on FirebaseAuthException catch (e) {
       // Gestion des erreurs FirebaseAuth spécifiques
       if (e.code == 'email-already-in-use') {
