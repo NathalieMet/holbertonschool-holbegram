@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:holbegram/methods/auth_methods.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddPicture extends StatefulWidget {
@@ -73,10 +74,10 @@ class _AddPictureState extends State<AddPicture> {
             Padding(
               padding: const EdgeInsets.symmetric(
                   vertical: 20.0,
-                  horizontal: 40.0), // Espace à gauche et à droite
+                  horizontal: 40.0),
               child: Column(
                 crossAxisAlignment:
-                    CrossAxisAlignment.start, // Aligne les textes à gauche
+                    CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Hello, ${widget.username} Welcome to Holbegram.',
@@ -110,11 +111,11 @@ class _AddPictureState extends State<AddPicture> {
       height: 180,
     ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   icon: const Icon(
-                    Icons.image,
+                    Icons.image_outlined,
                     size: 40,
                     color: Colors.red,
                   ),
@@ -124,7 +125,7 @@ class _AddPictureState extends State<AddPicture> {
                 ),
                 IconButton(
                   icon: const Icon(
-                    Icons.photo_camera,
+                    Icons.photo_camera_outlined,
                     size: 40,
                     color: Colors.red,
                   ),
@@ -156,7 +157,22 @@ class _AddPictureState extends State<AddPicture> {
                   fontSize: 25,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                String result = await AuthMethode().signUpUser(
+                            context: context,
+                            email: widget.email,
+                            password: widget.password,
+                            username: widget.username);
+                        if (result == "Success") {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Signup successful!')),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(result)),
+                          );
+                        }
+              },
             ),
           ])),
     );

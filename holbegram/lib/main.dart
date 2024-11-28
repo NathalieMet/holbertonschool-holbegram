@@ -22,10 +22,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AddPicture(
-        email: 'mail@email.com',
-        password: 'some_password',
-        username: 'John Doe',
+      home: SignUp(
+        emailController: TextEditingController(),
+        passwordController: TextEditingController(),
+        usernameController: TextEditingController(),
+        passwordConfirmController: TextEditingController(),
       ),
     );
   }
