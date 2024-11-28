@@ -112,4 +112,28 @@ class AuthMethode {
 
     return res;
   }
+
+   Future<Users> getUserDetails() async {
+    try {
+      // Get the current user's UID
+      User? currentUser = _auth.currentUser;
+      if (currentUser == null) {
+        throw Exception('No user is signed in');
+      }
+
+      // Fetch user details from Firestore using the UID
+      DocumentSnapshot userSnap =
+          await _firestore.collection('users').doc(currentUser.uid).get();
+
+      // Check if user data exists
+      if (!userSnap.exists) {
+        throw Exception('User not found in database');
+      }
+
+      // Return the Userd object created from the snapshot
+      return Users.fromSnap(userSnap);
+    } catch (e) {
+      throw Exception('Failed to get user details: $e');
+    }
+  }
 }

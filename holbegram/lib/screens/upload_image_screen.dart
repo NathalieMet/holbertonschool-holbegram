@@ -162,10 +162,11 @@ class _AddPictureState extends State<AddPicture> {
                             context: context,
                             email: widget.email,
                             password: widget.password,
-                            username: widget.username);
+                            username: widget.username,
+                            file: _image);
                         if (result == "Success") {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Signup successful!')),
+                            const SnackBar(content: Text('success')),
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
